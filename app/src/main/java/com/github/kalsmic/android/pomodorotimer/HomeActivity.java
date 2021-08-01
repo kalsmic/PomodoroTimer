@@ -1,7 +1,6 @@
 package com.github.kalsmic.android.pomodorotimer;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         timerDuration = (TextView) findViewById(R.id.textView_timer_duration);
 
         // set initial timer value
@@ -26,57 +26,39 @@ public class HomeActivity extends BaseActivity {
         startTimerButton = (Button) findViewById(R.id.button_start_timer);
     }
 
-    /**
-     * This method reduces the timer duration
-     * @param view the reduce timer button
-     */
-    public void decreaseTimerDuration(View view){
-        reduceTimerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!((currentDuration - stepDuration) < minDuration) ){
-                    currentDuration -= stepDuration;
-                    toggleShowDurationButtons(currentDuration);
-                     Log.d("TIMER Reduce", currentDuration.toString());
-                }
-            }
-        });
-    }
-
 
     /**
-     * This method increases the timer duration
-     * @param view the increase timer button
+     * This method increases or reduces the timer duration
+     *
+     * @param view the increase or decrease timer button
      */
-    public void increaseTimerDuration(View view){
-        increaseTimerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!((currentDuration + stepDuration) > maxDuration) ){
-                    currentDuration += stepDuration;
-                    toggleShowDurationButtons(currentDuration);
-                Log.d("TIMER Increase", currentDuration.toString());
-                }
-            }
-        });
+    public void changeTimerDuration(View view) {
+
+        if (view.equals(increaseTimerButton) && !((currentDuration + stepDuration) > maxDuration)) {
+            currentDuration += stepDuration;
+            toggleShowDurationButtons(currentDuration);
+        } else if (view.equals(reduceTimerButton) && !((currentDuration - stepDuration) < minDuration)) {
+            currentDuration -= stepDuration;
+            toggleShowDurationButtons(currentDuration);
+        }
     }
 
 
     /**
      * This method hides the increase and decrease timer buttons when the duration reaches the
      * threshold
+     *
      * @param duration the length of the timer in minutes
      */
-    private void toggleShowDurationButtons(int duration){
+    private void toggleShowDurationButtons(int duration) {
 
-        if(duration <= minDuration){
+        if (duration <= minDuration) {
             reduceTimerButton.setVisibility(View.INVISIBLE);
         } else {
             reduceTimerButton.setVisibility(View.VISIBLE);
         }
 
-        if(duration >= maxDuration ){
+        if (duration >= maxDuration) {
             increaseTimerButton.setVisibility(View.INVISIBLE);
         } else {
             increaseTimerButton.setVisibility(View.VISIBLE);

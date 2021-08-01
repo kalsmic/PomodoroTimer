@@ -7,7 +7,7 @@
     tools:context=".HomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:contentDescription="@string/app_image"
@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        android:src="@drawable/welcome"
+        />
 
     <TextView
         android:id="@+id/textView"
@@ -30,10 +31,10 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_home" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -61,7 +62,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:background="@android:drawable/ic_media_previous"
-        android:onClick="decreaseTimerDuration"
+        android:onClick="changeTimerDuration"
         android:visibility="invisible"
         app:backgroundTint="@color/pink"
         app:layout_constraintEnd_toStartOf="@+id/textView_timer_duration"
@@ -75,7 +76,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@android:drawable/ic_media_next"
-        android:onClick="increaseTimerDuration"
+        android:onClick="changeTimerDuration"
         app:backgroundTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
