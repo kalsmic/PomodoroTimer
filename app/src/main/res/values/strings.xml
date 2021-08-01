@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">PomodoroTimer</string>
     <string name="textView_app_title">Pomodoro Timer</string>
+    <string name="menu_sounds">Sounds</string>
+    <string name="menu_title_about">About</string>
+    <string name="menu_title_share">Share</string>
+    <string name="no_time_to_waste">No Time To Waste !</string>
+    <string name="button_start_timer">START</string>
+    <string name="time_minutes_header">Time: Minutes</string>
+    <string name="app_image">App image</string>
 </resources>

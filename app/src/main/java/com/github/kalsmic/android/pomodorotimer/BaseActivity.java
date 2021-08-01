@@ -9,13 +9,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+public class BaseActivity extends AppCompatActivity {
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_base);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
 
-            case R.id.menuSounds:
+            case R.id.menu_title_sounds:
                 Toast.makeText(this, "Menu Sounds Clicked", Toast.LENGTH_SHORT).show();
                 return true;
 
