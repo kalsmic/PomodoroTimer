@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PomodoroTimer</string>
+    <string name="textView_app_title">Pomodoro Timer</string>
+</resources>
