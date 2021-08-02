@@ -1,5 +1,6 @@
 package com.github.kalsmic.android.pomodorotimer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class HomeActivity extends BaseActivity {
         // set initial timer value
         currentDuration = minDuration;
         timerDuration.setText(currentDuration.toString());
+
         reduceTimerButton = (Button) findViewById(R.id.button_reduce_duration);
         increaseTimerButton = (Button) findViewById(R.id.button_increase_duration);
         startTimerButton = (Button) findViewById(R.id.button_start_timer);
@@ -66,5 +68,20 @@ public class HomeActivity extends BaseActivity {
         // SHOW CURRENT DURATION TO USER
         timerDuration.setText(currentDuration.toString());
 
+    }
+
+
+    /**
+     * This method navigates to the TimerActivity
+     *
+     * @param view
+     */
+    public void goToStartTimer(View view) {
+        Intent startTimerIntent = new Intent();
+        startTimerIntent.setClass(this, TimerActivity.class);
+
+
+        startTimerIntent.putExtra("timerDuration", currentDuration.longValue());
+        startActivity(startTimerIntent);
     }
 }
