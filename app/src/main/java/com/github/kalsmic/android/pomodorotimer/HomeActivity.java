@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeActivity extends BaseActivity {
     TextView timerDuration;
     Integer minDuration = 5, maxDuration = 60, stepDuration = 5, currentDuration;
     Button reduceTimerButton, increaseTimerButton, startTimerButton;
+    Boolean completed;
 
 
     @Override
@@ -26,8 +28,22 @@ public class HomeActivity extends BaseActivity {
         reduceTimerButton = (Button) findViewById(R.id.button_reduce_duration);
         increaseTimerButton = (Button) findViewById(R.id.button_increase_duration);
         startTimerButton = (Button) findViewById(R.id.button_start_timer);
+
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // check for timer status in intent
+        Intent timerStatusIntent = getIntent();
+        completed = timerStatusIntent.getBooleanExtra("timerCompleted", false);
+
+        // show notification to the user if timer is completed
+        if (completed) {
+            Toast.makeText(getApplicationContext(), "Timer Completed", Toast.LENGTH_LONG).show();
+        }
+    }
 
     /**
      * This method increases or reduces the timer duration

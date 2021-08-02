@@ -128,7 +128,7 @@ public class TimerActivity extends AppCompatActivity {
             public void onFinish() {
                 formatTimerDisplay(0);
                 // indicate that timer completed.
-                goToHomePage.putExtra("completed", true);
+                goToHomePage.putExtra("timerCompleted", true);
                 // redirect back to home page
                 startActivity(goToHomePage);
             }
