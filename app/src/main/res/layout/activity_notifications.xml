@@ -9,19 +9,18 @@
     <ListView
         android:id="@+id/listView_sounds"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:choiceMode="singleChoice"
         android:clickable="true"
+        android:focusable="true"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button_save_sound"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ListView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_save_sound"
