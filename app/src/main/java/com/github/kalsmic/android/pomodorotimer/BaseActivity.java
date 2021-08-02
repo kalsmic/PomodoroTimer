@@ -1,5 +1,6 @@
 package com.github.kalsmic.android.pomodorotimer;
 
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +20,12 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        Intent goToMenuOption = new Intent();
         switch (item.getItemId()) {
 
             case R.id.menu_title_sounds:
-                Toast.makeText(this, "Menu Sounds Clicked", Toast.LENGTH_SHORT).show();
+                goToMenuOption.setClass(this, NotificationsActivity.class);
+                startActivity(goToMenuOption);
                 return true;
 
             case R.id.menuAbout:
