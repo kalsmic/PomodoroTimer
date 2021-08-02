@@ -76,7 +76,6 @@
         android:layout_height="80dp"
         android:background="@android:drawable/ic_media_next"
         android:onClick="changeTimerDuration"
-        app:backgroundTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textView_timer_duration"
