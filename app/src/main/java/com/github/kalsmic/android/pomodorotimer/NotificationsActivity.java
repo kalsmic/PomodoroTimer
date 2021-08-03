@@ -17,21 +17,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class NotificationsActivity extends AppCompatActivity {
 
     int currentNotificationId = 0;
-    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
-        // create shared preference file
-        SharedPreferences soundPreferences = getSharedPreferences("SOUND_PREF", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor defaultSoundEditor = soundPreferences.edit();
+        // create a sound object
+        Sound sound = new Sound(getApplicationContext());
 
-        // get default notification sound from shared preferences
-        if (soundPreferences.contains("soundId")) {
-            currentNotificationId = soundPreferences.getInt("soundId", 0);
-        }
+        // get default notification sound Id
+        currentNotificationId = sound.getDefaultSoundId();
 
         ListView listViewSounds = findViewById(R.id.listView_sounds);
 
@@ -43,21 +39,11 @@ public class NotificationsActivity extends AppCompatActivity {
         // select default notification sound  in the list view
         listViewSounds.setItemChecked(currentNotificationId, true);
 
-        Log.d("currentNotificationId", currentNotificationId + "");
-
         // attach action to click event
         listViewSounds.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Always release mediaPlay Object if it exists
-                if (mediaPlayer != null) {
-                    mediaPlayer.release();
-                }
-                // force release object reference
-                mediaPlayer = null;
-                // create new MediaPlayer object for selected sound
-                getMediaPlayer(position);
-                mediaPlayer.start();
+                sound.play(position);
                 currentNotificationId = position;
             }
         });
@@ -67,11 +53,7 @@ public class NotificationsActivity extends AppCompatActivity {
         saveSoundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // store value in shared prefs file.
-                defaultSoundEditor.putInt("soundId", currentNotificationId);
-                // persist the changes
-                defaultSoundEditor.commit();
-
+                sound.setDefaultSound(currentNotificationId);
                 // Show notification to the user
                 Toast.makeText(getApplicationContext(), "Sound Changed !", Toast.LENGTH_SHORT).show();
             }
@@ -80,22 +62,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * This method creates a media sound object.
-     *
-     * @param soundId is the reference to the sound
-     * @return MediaPlayer object for sound with id soundId
-     */
-    public MediaPlayer getMediaPlayer(int soundId) {
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), Sound.getSound(soundId));
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mediaPlayer.release();
-            }
-        });
-        return mediaPlayer;
-    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.github.kalsmic.android.pomodorotimer;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,7 @@ public class HomeActivity extends BaseActivity {
         // show notification to the user if timer is completed
         if (completed) {
             Toast.makeText(this, "Timer Completed", Toast.LENGTH_LONG).show();
+//            MediaPlayer.create(getApplicationContext(), Sound.getSound())
         }
     }
 
@@ -95,7 +97,6 @@ public class HomeActivity extends BaseActivity {
     public void goToStartTimer(View view) {
         Intent startTimerIntent = new Intent();
         startTimerIntent.setClass(this, TimerActivity.class);
-
 
         startTimerIntent.putExtra("timerDuration", currentDuration.longValue());
         startActivity(startTimerIntent);
