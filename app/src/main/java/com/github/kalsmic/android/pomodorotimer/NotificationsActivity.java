@@ -1,6 +1,7 @@
 package com.github.kalsmic.android.pomodorotimer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -62,6 +63,11 @@ public class NotificationsActivity extends AppCompatActivity {
 
     }
 
+
+    public void goToHomeScreen(View view) {
+        // redirect back to home page
+        startActivity(new Intent().setClass(this,HomeActivity.class));
+    }
 
 
 }
