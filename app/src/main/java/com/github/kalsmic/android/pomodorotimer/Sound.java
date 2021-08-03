@@ -45,9 +45,9 @@ public class Sound {
             default:
             case 0:
                 return  R.raw.beep;
-            case 2:
-                return R.raw.magic_bubble_shimmer;
             case 1:
+                return R.raw.magic_bubble_shimmer;
+            case 2:
                 return R.raw.small_bell_ring;
             case 3:
                 return R.raw.ting_ting;
