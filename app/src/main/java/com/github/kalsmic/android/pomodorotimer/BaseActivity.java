@@ -29,7 +29,8 @@ public class BaseActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menuAbout:
-                Toast.makeText(this, "Menu About Clicked", Toast.LENGTH_SHORT).show();
+                goToMenuOption.setClass(this, AboutActivity.class);
+                startActivity(goToMenuOption);
                 return true;
 
             case R.id.menuShare:

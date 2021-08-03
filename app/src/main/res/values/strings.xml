@@ -14,10 +14,22 @@
     <string name="ting_ting">Ting Ting</string>
     <string name="save_sound">Save</string>
     <string name="back">Back</string>
+    <string name="notifications">Notifications</string>
+    <string name="about">ABOUT</string>
+    <string name="the_pomodoro_technique">The Pomodoro Technique</string>
+    <string name="go">GO</string>
     <string-array name="soundsArray">
         <item>@string/beep</item>
         <item>@string/magic_bubble_shimmer</item>
         <item>@string/small_bell</item>
         <item>@string/ting_ting</item>
+    </string-array>
+    <string-array name="abouts_array">
+        <item>The Pomodoro Technique</item>
+        <item>Application source code</item>
+    </string-array>
+    <string-array name="abouts_uri_array">
+        <item>https://en.wikipedia.org/wiki/Pomodoro_Technique</item>
+        <item>https://github.com/kalsmic/pomodoro</item>
     </string-array>
 </resources>
