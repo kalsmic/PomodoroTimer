@@ -43,7 +43,8 @@ public class HomeActivity extends BaseActivity {
         // show notification to the user if timer is completed
         if (completed) {
             Toast.makeText(this, "Timer Completed", Toast.LENGTH_LONG).show();
-//            MediaPlayer.create(getApplicationContext(), Sound.getSound())
+            Sound sound = new Sound(getApplicationContext());
+            sound.playDefaultSound();
         }
     }
 
