@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TimerActivity extends AppCompatActivity {
     long timeTotal, timeLeft;
     CountDownTimer countDownTimer;
-    Button resumeTimerButton, pauseTimerButton, restartTimerButton, cancelTimerButton;
+    Button resumeTimerButton, pauseTimerButton, restartTimerButton, cancelTimerButton, goHomeButton;
     TextView textViewMinutes, textViewSeconds;
     Intent goToHomePage;
     LinearLayout timerDisplayLayout;
@@ -35,6 +36,7 @@ public class TimerActivity extends AppCompatActivity {
         pauseTimerButton = (Button) findViewById(R.id.button_pause_timer);
         restartTimerButton = (Button) findViewById(R.id.button_restart_timer);
         cancelTimerButton = (Button) findViewById(R.id.button_cancel_timer);
+        goHomeButton = (Button) findViewById(R.id.button_go_home);
         timerDisplayLayout = (LinearLayout) findViewById(R.id.linearLayout_timer_display);
 
         // start the timer
@@ -115,7 +117,6 @@ public class TimerActivity extends AppCompatActivity {
      * @return the CountDownTimer object
      */
     public CountDownTimer getCountDownTimer(long millisInFuture) {
-
         countDownTimer = new CountDownTimer(millisInFuture, 1000) {
 
             @Override
@@ -126,11 +127,24 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                formatTimerDisplay(0);
+                formatTimerDisplay(timeTotal);
+                timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_green));
+                textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_green));
+                Sound sound = new Sound(getApplicationContext());
+
+                sound.playDefaultSound();
+                Toast.makeText(getApplicationContext(), "Timer Completed", Toast.LENGTH_LONG).show();
+                pauseTimerButton.setVisibility(View.INVISIBLE);
+                cancelTimerButton.setVisibility(View.INVISIBLE);
+                goHomeButton.setVisibility(View.VISIBLE);
+
+
+
                 // indicate that timer completed.
-                goToHomePage.putExtra("timerCompleted", true);
+//                goToHomePage.putExtra("timerCompleted", true);
                 // redirect back to home page
-                startActivity(goToHomePage);
+//                startActivity(goToHomePage);
             }
 
         };
@@ -162,5 +176,10 @@ public class TimerActivity extends AppCompatActivity {
      */
     public void startTimer(long duration) {
         getCountDownTimer(duration).start();
+    }
+
+    public void goToHomeScreen(View view) {
+        // redirect back to home page
+        startActivity(goToHomePage);
     }
 }

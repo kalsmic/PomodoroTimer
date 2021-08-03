@@ -13,6 +13,7 @@
     <string name="small_bell">Small Bell</string>
     <string name="ting_ting">Ting Ting</string>
     <string name="save_sound">Save</string>
+    <string name="back">Back</string>
     <string-array name="soundsArray">
         <item>@string/beep</item>
         <item>@string/magic_bubble_shimmer</item>
