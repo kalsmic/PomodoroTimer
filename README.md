@@ -1,5 +1,7 @@
 # Pomodoro Timer APP
 
+This app is built to boost your productivity as you make the best use of the time you have, to do the things that matter to you.
+
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
