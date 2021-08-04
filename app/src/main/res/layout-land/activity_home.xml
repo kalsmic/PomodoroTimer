@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/imageView_home"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/welcome_banner"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:gravity="center_horizontal"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/no_time_to_waste"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_home"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical_home"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_minutes_header"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView_timer_duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVertical_home"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_reduce_duration"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_baseline_chevron_left_24"
+        android:onClick="changeTimerDuration"
+        android:visibility="invisible"
+        app:backgroundTint="@color/pink"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_home"
+        app:layout_constraintEnd_toStartOf="@+id/textView_timer_duration"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView_home"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal_home" />
+
+
+    <Button
+        android:id="@+id/button_increase_duration"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_baseline_chevron_right_24"
+        android:onClick="changeTimerDuration"
+        app:layout_constraintBottom_toBottomOf="@+id/button_reduce_duration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView_timer_duration"
+        app:layout_constraintTop_toTopOf="@+id/button_reduce_duration" />
+
+    <TextView
+        android:id="@+id/textView_timer_duration"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:alpha="15"
+        android:background="@color/light_pink"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_reduce_duration"
+        app:layout_constraintEnd_toStartOf="@+id/button_increase_duration"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_reduce_duration"
+        app:layout_constraintTop_toTopOf="@+id/button_reduce_duration" />
+
+    <Button
+        android:id="@+id/button_start_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="goToStartTimer"
+        android:text="@string/button_start_timer"
+        app:backgroundTint="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVertical_home"
+        app:layout_constraintTop_toBottomOf="@+id/textView_timer_duration" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
