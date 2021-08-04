@@ -4,6 +4,7 @@
 Clone this repository and import into **Android Studio**
 ```bash
 git clone git@github.com:kalsmic/PomodoroTimer.git
+```
 
 ## Generating signed APK
 From Android Studio:
