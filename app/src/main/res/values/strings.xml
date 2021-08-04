@@ -18,6 +18,10 @@
     <string name="about">ABOUT</string>
     <string name="the_pomodoro_technique">The Pomodoro Technique</string>
     <string name="go">GO</string>
+    <string name="send">Send</string>
+    <string name="message">Message</string>
+    <string name="hint_enter_message">enter the message to send</string>
+    <string name="share_message">Hi checkout this cool time management app.</string>
     <string-array name="soundsArray">
         <item>@string/beep</item>
         <item>@string/magic_bubble_shimmer</item>
