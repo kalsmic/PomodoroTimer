@@ -31,7 +31,7 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // create destination with empty number so that the user can specify their own
-                Uri destination =  Uri.parse("smsto:");
+                Uri destination = Uri.parse("smsto:");
 
                 // create implicit intent ot any app with SENDTO capability
                 Intent smsIntent = new Intent(Intent.ACTION_SENDTO, destination);

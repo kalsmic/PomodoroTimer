@@ -8,14 +8,33 @@ import android.preference.PreferenceManager;
 public class Sound {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    private Context context;
-    private int soundId = 0;
     MediaPlayer mediaPlayer;
+    private final Context context;
+    private int soundId = 0;
 
     public Sound(Context context) {
         this.context = context;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         editor = sharedPreferences.edit();
+    }
+
+    /**
+     * @param soundId the identify of the sound
+     * @return sound with specified id
+     */
+    public static int getSound(int soundId) {
+        switch (soundId) {
+            default:
+            case 0:
+                return R.raw.beep;
+            case 1:
+                return R.raw.magic_bubble_shimmer;
+            case 2:
+                return R.raw.small_bell_ring;
+            case 3:
+                return R.raw.ting_ting;
+
+        }
     }
 
     /**
@@ -33,26 +52,6 @@ public class Sound {
      */
     public int getDefaultSound() {
         return getSound(soundId);
-    }
-
-
-    /**
-     * @param soundId the identify of the sound
-     * @return sound with specified id
-     */
-    public static int getSound(int soundId) {
-        switch (soundId) {
-            default:
-            case 0:
-                return  R.raw.beep;
-            case 1:
-                return R.raw.magic_bubble_shimmer;
-            case 2:
-                return R.raw.small_bell_ring;
-            case 3:
-                return R.raw.ting_ting;
-
-        }
     }
 
     /**

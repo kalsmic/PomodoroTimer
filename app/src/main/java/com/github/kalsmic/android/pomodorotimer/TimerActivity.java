@@ -140,7 +140,6 @@ public class TimerActivity extends AppCompatActivity {
                 goHomeButton.setVisibility(View.VISIBLE);
 
 
-
                 // indicate that timer completed.
 //                goToHomePage.putExtra("timerCompleted", true);
                 // redirect back to home page

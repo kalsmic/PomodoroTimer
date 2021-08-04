@@ -59,7 +59,7 @@ public class AboutActivity extends AppCompatActivity {
      *
      * @param view the Go button
      */
-    public void navigate(View view){
+    public void navigate(View view) {
         webView.setVisibility(View.VISIBLE);
         webView.setWebViewClient(new WebViewClient());
         String[] aboutURIOptions = getResources().getStringArray(R.array.abouts_uri_array);
