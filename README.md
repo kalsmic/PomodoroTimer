@@ -8,6 +8,10 @@ Clone this repository and import into **Android Studio**
 git clone git@github.com:kalsmic/PomodoroTimer.git
 ```
 
+## requirements
+- minimum SDK Version 16
+- target SDK Version 30
+
 ## Generating signed APK
 From Android Studio:
 1. ***Build*** menu
