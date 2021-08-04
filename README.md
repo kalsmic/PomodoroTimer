@@ -17,6 +17,6 @@ From Android Studio:
 ## Credits
 [Hands Power Photo](https://stocksnap.io/photo/hands-power-XG0J32JHTM) by [Ben White](https://stocksnap.io/author/34619) on [Stock Snap](https://stocksnap.io)
 
-### Sogan
+## My Motivation
 - If you use the time you have to do the things you love, you will achieve want you want in the time you have.
 - Time is always enough only if you make the best use of it.
