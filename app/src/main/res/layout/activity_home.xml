@@ -13,7 +13,7 @@
         android:contentDescription="@string/app_image"
         android:scaleType="centerCrop"
         android:src="@drawable/welcome_banner"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView_home" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guidelineHorizontal_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -60,7 +60,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
-        android:background="@android:drawable/ic_media_previous"
+        android:background="@drawable/ic_baseline_chevron_left_24"
         android:onClick="changeTimerDuration"
         android:visibility="invisible"
         app:backgroundTint="@color/pink"
@@ -74,7 +74,7 @@
         android:id="@+id/button_increase_duration"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@android:drawable/ic_media_next"
+        android:background="@drawable/ic_baseline_chevron_right_24"
         android:onClick="changeTimerDuration"
         app:layout_constraintBottom_toBottomOf="@+id/button_reduce_duration"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +101,8 @@
         android:id="@+id/button_start_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:onClick="goToStartTimer"
         android:text="@string/button_start_timer"
         app:backgroundTint="@color/gray"
