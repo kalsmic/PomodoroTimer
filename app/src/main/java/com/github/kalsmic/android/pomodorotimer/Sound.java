@@ -32,7 +32,11 @@ public class Sound {
             case 2:
                 return R.raw.small_bell_ring;
             case 3:
-                return R.raw.ting_ting;
+                return R.raw.single_shot;
+            case 4:
+                return R.raw.pop_goes_the_weasel;
+            case 5:
+                return R.raw.synth;
 
         }
     }

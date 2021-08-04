@@ -11,7 +11,9 @@
     <string name="beep">Beep</string>
     <string name="magic_bubble_shimmer">Magic Bubble Shimmer</string>
     <string name="small_bell">Small Bell</string>
-    <string name="ting_ting">Ting Ting</string>
+    <string name="single_shot">Single Shot</string>
+    <string name="pop_goes_the_weasel">Pop Goes The Weasel</string>
+    <string name="synth">Synth</string>
     <string name="save_sound">Save</string>
     <string name="back">Back</string>
     <string name="notifications">Notifications</string>
@@ -26,7 +28,9 @@
         <item>@string/beep</item>
         <item>@string/magic_bubble_shimmer</item>
         <item>@string/small_bell</item>
-        <item>@string/ting_ting</item>
+        <item>@string/single_shot</item>
+        <item>@string/pop_goes_the_weasel</item>
+        <item>@string/synth</item>
     </string-array>
     <string-array name="abouts_array">
         <item>The Pomodoro Technique</item>
