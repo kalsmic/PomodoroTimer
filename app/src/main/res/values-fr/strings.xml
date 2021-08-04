@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PomoMinuterie Pomodorodoro Timer</string>
+    <string name="app_image">image de l\'application</string>
+    <string name="beep">Bip</string>
+    <string name="magic_bubble_shimmer">Bulle magique chatoyante</string>
+    <string name="small_bell">clochette</string>
+    <string name="single_shot">Coup Unique</string>
+    <string name="pop_goes_the_weasel">Pop va la belette</string>
+    <string name="synth">Synthé</string>
+    <string name="save_sound">Eenregistrer</string>
+    <string name="back">Arrière</string>
+    <string name="about">À PROPOS DE</string>
+    <string name="the_pomodoro_technique">La technique Pomodoro</string>
+    <string name="go">ALLER</string>
+    <string name="send">Envoyer</string>
+    <string name="message">Un message</string>
+    <string name="hint_enter_message">saisir le message à envoyer</string>
+    <string name="share_message">Salut checkout cette application de gestion du temps cool.</string>
+    <string name="menu_title_share">Partager</string>
+    <string name="no_time_to_waste">Pas de temps à perdre !</string>
+    <string name="button_start_timer">Commencer</string>
+    <string name="time_minutes_header">Durée : Minutes</string>
+    <string name="menu_sounds">Des sons</string>
+    <string name="textView_app_title">Minuterie Pomodoro</string>
+</resources>
