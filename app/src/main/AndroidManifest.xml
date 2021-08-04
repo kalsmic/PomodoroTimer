@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.kalsmic.android.pomodorotimer">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PomodoroTimer">
-        <activity android:name=".AboutActivity"></activity>
-        <activity android:name=".NotificationsActivity" />
-        <activity android:name=".TimerActivity" />
+        <activity android:name=".ShareActivity" android:parentActivityName=".HomeActivity"></activity>
+        <activity android:name=".AboutActivity" android:parentActivityName=".HomeActivity" />
+        <activity android:name=".NotificationsActivity" android:parentActivityName=".HomeActivity" />
+        <activity android:name=".TimerActivity"/>
         <activity android:name=".BaseActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>

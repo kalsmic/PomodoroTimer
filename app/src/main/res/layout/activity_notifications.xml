@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".NotificationsActivity">
 
-    <Button
-        android:id="@+id/button_go_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
-        android:onClick="goToHomeScreen"
-        android:text="@string/notifications"
-        app:layout_constraintBottom_toTopOf="@+id/listView_sounds"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <ListView
         android:id="@+id/listView_sounds"
         android:layout_width="match_parent"
@@ -32,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_go_home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_save_sound"

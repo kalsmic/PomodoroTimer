@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +33,8 @@ public class BaseActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menuShare:
-                Toast.makeText(this, "Menu Share Clicked", Toast.LENGTH_SHORT).show();
-                return true;
-
+                goToMenuOption.setClass(this, ShareActivity.class);
+                startActivity(goToMenuOption);
             default:
                 return super.onOptionsItemSelected(item);
         }

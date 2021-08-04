@@ -1,8 +1,5 @@
 package com.github.kalsmic.android.pomodorotimer;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -10,6 +7,8 @@ import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutActivity extends AppCompatActivity {
     WebView webView;
@@ -21,6 +20,10 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
+        // set back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("About");
 
         // retrieve references to the Views defined in the activity_about.xml
         webView = (WebView) findViewById(R.id.webView_about);
@@ -61,14 +64,5 @@ public class AboutActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         String[] aboutURIOptions = getResources().getStringArray(R.array.abouts_uri_array);
         webView.loadUrl(aboutURIOptions[aboutChoiceId]);
-    }
-
-    /**
-     *
-     * @param view the back to home button
-     */
-    public void goToHomeScreen(View view) {
-        // redirect back to home page
-        startActivity(new Intent().setClass(this,HomeActivity.class));
     }
 }

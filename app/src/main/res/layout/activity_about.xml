@@ -7,16 +7,6 @@
     tools:context=".AboutActivity">
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
-        android:onClick="goToHomeScreen"
-        android:text="@string/about"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_about_uri"
@@ -29,7 +19,7 @@
         app:layout_constraintBottom_toTopOf="@+id/webView_about"
         app:layout_constraintEnd_toStartOf="@+id/button_go"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button

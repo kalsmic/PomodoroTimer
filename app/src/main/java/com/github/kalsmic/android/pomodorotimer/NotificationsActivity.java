@@ -1,11 +1,6 @@
 package com.github.kalsmic.android.pomodorotimer;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +18,10 @@ public class NotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+
+        // set back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Notifications");
 
         // create a sound object
         Sound sound = new Sound(getApplicationContext());
@@ -62,12 +61,5 @@ public class NotificationsActivity extends AppCompatActivity {
 
 
     }
-
-
-    public void goToHomeScreen(View view) {
-        // redirect back to home page
-        startActivity(new Intent().setClass(this,HomeActivity.class));
-    }
-
 
 }
