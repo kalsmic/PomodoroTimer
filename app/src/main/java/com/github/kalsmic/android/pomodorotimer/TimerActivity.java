@@ -74,9 +74,9 @@ public class TimerActivity extends AppCompatActivity {
         pauseTimerButton.setVisibility(View.VISIBLE);
 
         // set playing state colors
-        timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_blue));
-        textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_blue));
-        textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_blue));
+        timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_green));
+        textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_green));
+        textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_green));
 
     }
 
@@ -91,9 +91,9 @@ public class TimerActivity extends AppCompatActivity {
         pauseTimerButton.setVisibility(View.INVISIBLE);
         resumeTimerButton.setVisibility(View.VISIBLE);
         // set playing state colors
-        timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_orange));
-        textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_orange));
-        textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_orange));
+        timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_red));
+        textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_red));
+        textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_red));
 
 
     }
