@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PomoMinuterie Pomodorodoro Timer</string>
+    <string name="app_name">Minuterie Pomodoro</string>
     <string name="app_image">image de l\'application</string>
     <string name="beep">Bip</string>
     <string name="magic_bubble_shimmer">Bulle magique chatoyante</string>
@@ -10,7 +10,7 @@
     <string name="synth">Synthé</string>
     <string name="save_sound">Eenregistrer</string>
     <string name="back">Arrière</string>
-    <string name="about">À PROPOS DE</string>
+    <string name="about">À propos de</string>
     <string name="the_pomodoro_technique">La technique Pomodoro</string>
     <string name="go">ALLER</string>
     <string name="send">Envoyer</string>
@@ -23,4 +23,6 @@
     <string name="time_minutes_header">Durée : Minutes</string>
     <string name="menu_sounds">Des sons</string>
     <string name="textView_app_title">Minuterie Pomodoro</string>
+    <string name="menu_title_about">À propos de</string>
+    <string name="notifications">Des sons</string>
 </resources>
