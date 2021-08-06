@@ -18,6 +18,10 @@ From Android Studio:
 2. ***Generate Signed APK...***
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
 
+## Documentation
+ - Application Description on [Google slide](https://docs.google.com/presentation/d/1mjLYEEnoPKIB0fsILe6BPA5AWN4WKqMI4GAfFcpiuJE/edit?usp=sharing)
+ - Mock Up designs on (Marvel](https://marvelapp.com/prototype/6705eaf)
+
 ## Credits
 [Hands Power Photo](https://stocksnap.io/photo/hands-power-XG0J32JHTM) by [Ben White](https://stocksnap.io/author/34619) on [Stock Snap](https://stocksnap.io)
 
