@@ -14,7 +14,7 @@
         <activity android:name=".ShareActivity" android:parentActivityName=".HomeActivity"></activity>
         <activity android:name=".AboutActivity" android:parentActivityName=".HomeActivity" />
         <activity android:name=".NotificationsActivity" android:parentActivityName=".HomeActivity" />
-        <activity android:name=".TimerActivity"
+        <activity android:name=".timer.TimerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
             />
         <activity android:name=".BaseActivity" />

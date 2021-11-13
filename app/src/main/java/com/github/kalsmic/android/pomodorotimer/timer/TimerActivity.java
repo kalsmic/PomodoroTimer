@@ -1,8 +1,7 @@
-package com.github.kalsmic.android.pomodorotimer;
+package com.github.kalsmic.android.pomodorotimer.timer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -10,14 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.github.kalsmic.android.pomodorotimer.HomeActivity;
+import com.github.kalsmic.android.pomodorotimer.R;
+import com.github.kalsmic.android.pomodorotimer.Sound;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class TimerActivity extends AppCompatActivity {
-    long timeTotal, timeLeft;
-    CountDownTimer countDownTimer;
     Button resumeTimerButton, pauseTimerButton, restartTimerButton, cancelTimerButton, goHomeButton;
     TextView textViewMinutes, textViewSeconds;
     Intent goToHomePage;
     LinearLayout timerDisplayLayout;
+    private TimerViewModel mTimerViewModel;
 
 
     @Override
@@ -25,9 +31,7 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        // create intent to get values passed from Home Activity
-        Intent startTimeIntent = getIntent();
-        timeTotal = startTimeIntent.getLongExtra("timerDuration", 0) * 60000;
+        mTimerViewModel = new ViewModelProvider(this).get(TimerViewModel.class);
 
         // Retrieve references to views declared in activity_timer.xml
         textViewMinutes = (TextView) findViewById(R.id.textView_minutes);
@@ -39,12 +43,39 @@ public class TimerActivity extends AppCompatActivity {
         goHomeButton = (Button) findViewById(R.id.button_go_home);
         timerDisplayLayout = (LinearLayout) findViewById(R.id.linearLayout_timer_display);
 
-        // start the timer
-        startTimer(timeTotal);
+        // create intent to get values passed from Home Activity
+        Intent startTimeIntent = getIntent();
+        long timeTotal = startTimeIntent.getLongExtra("timerDuration", 0) * 60000;
+
+        mTimerViewModel.setMaxTime(timeTotal);
+        mTimerViewModel.startTimer();
+
+
+        mTimerViewModel.getTimeLeft().observe(this, this::formatTimerDisplay);
+        mTimerViewModel.getIsComplete().observe(this, this::completeTimer);
+
 
         // create intent for redirecting back to the home page.
         goToHomePage = new Intent();
         goToHomePage.setClass(this, HomeActivity.class);
+
+
+    }
+
+    private void completeTimer(Boolean isComplete) {
+        if (isComplete) {
+            timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_green));
+            textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_green));
+            textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_green));
+            Sound sound = new Sound(getApplicationContext());
+
+            sound.playDefaultSound();
+            Toast.makeText(getApplicationContext(), "Timer Completed", Toast.LENGTH_LONG).show();
+            pauseTimerButton.setVisibility(View.INVISIBLE);
+            cancelTimerButton.setVisibility(View.INVISIBLE);
+            goHomeButton.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
@@ -54,8 +85,7 @@ public class TimerActivity extends AppCompatActivity {
      * @param view is the restart timer view button
      */
     public void restartTimer(View view) {
-        countDownTimer.cancel();
-        startTimer(timeTotal);
+        mTimerViewModel.resetTimer();
         // hide play button and show pause button
         resumeTimerButton.setVisibility(View.INVISIBLE);
         restartTimerButton.setVisibility(View.VISIBLE);
@@ -68,7 +98,7 @@ public class TimerActivity extends AppCompatActivity {
      * @param view is the resume timer view button
      */
     public void resumeTimer(View view) {
-        startTimer(timeLeft);
+        mTimerViewModel.resumeTimer();
         // hide play button and show pause button
         resumeTimerButton.setVisibility(View.INVISIBLE);
         pauseTimerButton.setVisibility(View.VISIBLE);
@@ -86,7 +116,7 @@ public class TimerActivity extends AppCompatActivity {
      * @param view is the pause timer view button
      */
     public void pauseTimer(View view) {
-        countDownTimer.cancel();
+        mTimerViewModel.cancelTimer();
         // hide pause button and show resume button
         pauseTimerButton.setVisibility(View.INVISIBLE);
         resumeTimerButton.setVisibility(View.VISIBLE);
@@ -104,51 +134,11 @@ public class TimerActivity extends AppCompatActivity {
      * @param view the cancel timer view button
      */
     public void cancelTimer(View view) {
-        countDownTimer.cancel();
+        mTimerViewModel.cancelTimer();
         // redirect to Homepage
         startActivity(goToHomePage);
     }
 
-
-    /**
-     * This methods creates a countDown Timer object
-     *
-     * @param millisInFuture duration of timer in milliseconds
-     * @return the CountDownTimer object
-     */
-    public CountDownTimer getCountDownTimer(long millisInFuture) {
-        countDownTimer = new CountDownTimer(millisInFuture, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeft = millisUntilFinished;
-                formatTimerDisplay(millisUntilFinished);
-            }
-
-            @Override
-            public void onFinish() {
-                formatTimerDisplay(timeTotal);
-                timerDisplayLayout.setBackgroundColor(getResources().getColor(R.color.light_green));
-                textViewSeconds.setBackgroundColor(getResources().getColor(R.color.dark_green));
-                textViewMinutes.setBackgroundColor(getResources().getColor(R.color.dark_green));
-                Sound sound = new Sound(getApplicationContext());
-
-                sound.playDefaultSound();
-                Toast.makeText(getApplicationContext(), "Timer Completed", Toast.LENGTH_LONG).show();
-                pauseTimerButton.setVisibility(View.INVISIBLE);
-                cancelTimerButton.setVisibility(View.INVISIBLE);
-                goHomeButton.setVisibility(View.VISIBLE);
-
-
-                // indicate that timer completed.
-//                goToHomePage.putExtra("timerCompleted", true);
-                // redirect back to home page
-//                startActivity(goToHomePage);
-            }
-
-        };
-        return countDownTimer;
-    }
 
     /**
      * This methods formats the time for display in form of minutes and seconds
@@ -156,26 +146,20 @@ public class TimerActivity extends AppCompatActivity {
      * @param duration duration in milliseconds
      */
     public void formatTimerDisplay(long duration) {
+
         // Extract minutes from duration
-        int minutes = (int) duration / 60000;
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
 
         // Display the minutes to the user
-        textViewMinutes.setText(minutes + "");
+        textViewMinutes.setText(String.format(Locale.ROOT, "%02d", minutes));
         // Extract seconds from duration, excluding the minutes
-        int seconds = (int) (duration / 1000) % 60;
+        long seconds = (duration / 1000) % 60;
 
         // Display the seconds to the user
-        textViewSeconds.setText(seconds + "");
+        textViewSeconds.setText(String.format(Locale.ROOT, "%02d", seconds));
+
     }
 
-    /**
-     * This methods starts the counter
-     *
-     * @param duration is the length of the count down in milliseconds
-     */
-    public void startTimer(long duration) {
-        getCountDownTimer(duration).start();
-    }
 
     public void goToHomeScreen(View view) {
         // redirect back to home page

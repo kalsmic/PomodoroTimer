@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginEnd="5dp"
     android:layout_marginRight="5dp"
-    tools:context=".TimerActivity">
+    tools:context=".timer.TimerActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"

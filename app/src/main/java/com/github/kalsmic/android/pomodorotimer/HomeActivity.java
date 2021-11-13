@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.kalsmic.android.pomodorotimer.timer.TimerActivity;
+
 public class HomeActivity extends BaseActivity {
     TextView timerDuration;
     Integer minDuration = 5, maxDuration = 60, stepDuration = 5, currentDuration;
