@@ -12,7 +12,7 @@ import com.github.kalsmic.android.pomodorotimer.timer.TimerActivity;
 
 public class HomeActivity extends BaseActivity {
     TextView timerDuration;
-    Integer minDuration = 1, maxDuration = 60, stepDuration = 5, currentDuration;
+    Integer minDuration = 5, maxDuration = 60, stepDuration = 5, currentDuration;
     Button reduceTimerButton, increaseTimerButton, startTimerButton;
     Boolean completed;
 
