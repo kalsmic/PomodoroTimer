@@ -7,11 +7,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityHomeBinding;
 import com.github.kalsmic.android.pomodorotimer.timer.TimerActivity;
 
 public class HomeActivity extends BaseActivity {
     TextView timerDuration;
-    Integer minDuration = 5, maxDuration = 60, stepDuration = 5, currentDuration;
+    Integer minDuration = 1, maxDuration = 60, stepDuration = 5, currentDuration;
     Button reduceTimerButton, increaseTimerButton, startTimerButton;
     Boolean completed;
 
@@ -19,19 +20,24 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        timerDuration = (TextView) findViewById(R.id.textView_timer_duration);
+        timerDuration = binding.textViewTimerDuration;
 
         // set initial timer value
         currentDuration = minDuration;
-        timerDuration.setText(currentDuration.toString());
+        setTimerDuration();
 
-        reduceTimerButton = (Button) findViewById(R.id.button_reduce_duration);
-        increaseTimerButton = (Button) findViewById(R.id.button_increase_duration);
-        startTimerButton = (Button) findViewById(R.id.button_start_timer);
+        reduceTimerButton = binding.buttonReduceDuration;
+        increaseTimerButton = binding.buttonIncreaseDuration;
+        startTimerButton = binding.buttonStartTimer;
 
 
+    }
+
+    private void setTimerDuration() {
+        timerDuration.setText(String.valueOf(currentDuration));
     }
 
     @Override
@@ -86,7 +92,7 @@ public class HomeActivity extends BaseActivity {
             increaseTimerButton.setVisibility(View.VISIBLE);
         }
         // SHOW CURRENT DURATION TO USER
-        timerDuration.setText(currentDuration.toString());
+        setTimerDuration();
 
     }
 
@@ -94,7 +100,7 @@ public class HomeActivity extends BaseActivity {
     /**
      * This method navigates to the TimerActivity
      *
-     * @param view
+     * @param view start timer view
      */
     public void goToStartTimer(View view) {
         Intent startTimerIntent = new Intent();

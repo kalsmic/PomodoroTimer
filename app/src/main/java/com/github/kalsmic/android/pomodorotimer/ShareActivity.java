@@ -5,44 +5,43 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityShareBinding;
+
+import java.util.Objects;
 
 public class ShareActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
+        ActivityShareBinding binding = ActivityShareBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // set back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Share");
 
-        Button sendMessageButton = (Button) findViewById(R.id.button_send);
+        Button sendMessageButton = binding.buttonSend;
 
         // retrieve the message used in the edit text
-        String message = (
-                (EditText) findViewById(R.id.editTextTextMultiLine_message)
-        ).getText().toString();
+        String message = (binding.editTextTextMultiLineMessage).getText().toString();
 
-        sendMessageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // create destination with empty number so that the user can specify their own
-                Uri destination = Uri.parse("smsto:");
+        sendMessageButton.setOnClickListener(v -> {
+            // create destination with empty number so that the user can specify their own
+            Uri destination = Uri.parse("smsto:");
 
-                // create implicit intent ot any app with SENDTO capability
-                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, destination);
+            // create implicit intent ot any app with SENDTO capability
+            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, destination);
 
-                // pass the composed message to the messaging activity
-                smsIntent.putExtra("sms_body", message);
+            // pass the composed message to the messaging activity
+            smsIntent.putExtra("sms_body", message);
 
-                // launch the intent
-                startActivity(smsIntent);
+            // launch the intent
+            startActivity(smsIntent);
 
-            }
         });
 
     }

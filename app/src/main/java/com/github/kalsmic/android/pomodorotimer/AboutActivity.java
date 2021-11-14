@@ -10,6 +10,10 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityAboutBinding;
+
+import java.util.Objects;
+
 public class AboutActivity extends AppCompatActivity {
     WebView webView;
     Spinner spinner;
@@ -19,16 +23,17 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        ActivityAboutBinding binding = ActivityAboutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // set back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("About");
 
         // retrieve references to the Views defined in the activity_about.xml
-        webView = (WebView) findViewById(R.id.webView_about);
+        webView = binding.webViewAbout;
 
-        spinner = (Spinner) findViewById(R.id.spinner_about_uri);
+        spinner = binding.spinnerAboutUri;
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,

@@ -61,9 +61,7 @@ public class TimerViewModel extends ViewModel {
      * This methods restarts the timer countdown
      */
     public void resetTimer() {
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
-        }
+        cancelTimer();
         startCountDown(mMillisInFuture.getValue());
     }
 
@@ -91,7 +89,7 @@ public class TimerViewModel extends ViewModel {
     /**
      * Initializes the maximum timer time and time left
      *
-     * @param milliseconds
+     * @param milliseconds maximum time
      */
     public void setMaxTime(long milliseconds) {
         mMillisInFuture.setValue(milliseconds);

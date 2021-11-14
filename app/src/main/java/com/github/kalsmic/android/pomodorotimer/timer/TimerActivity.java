@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.github.kalsmic.android.pomodorotimer.HomeActivity;
 import com.github.kalsmic.android.pomodorotimer.R;
 import com.github.kalsmic.android.pomodorotimer.Sound;
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityTimerBinding;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -24,24 +25,25 @@ public class TimerActivity extends AppCompatActivity {
     Intent goToHomePage;
     LinearLayout timerDisplayLayout;
     private TimerViewModel mTimerViewModel;
-
+    private ActivityTimerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timer);
+        binding = ActivityTimerBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         mTimerViewModel = new ViewModelProvider(this).get(TimerViewModel.class);
 
         // Retrieve references to views declared in activity_timer.xml
-        textViewMinutes = (TextView) findViewById(R.id.textView_minutes);
-        textViewSeconds = (TextView) findViewById(R.id.textView_seconds);
-        resumeTimerButton = (Button) findViewById(R.id.button_resume_timer);
-        pauseTimerButton = (Button) findViewById(R.id.button_pause_timer);
-        restartTimerButton = (Button) findViewById(R.id.button_restart_timer);
-        cancelTimerButton = (Button) findViewById(R.id.button_cancel_timer);
-        goHomeButton = (Button) findViewById(R.id.button_go_home);
-        timerDisplayLayout = (LinearLayout) findViewById(R.id.linearLayout_timer_display);
+        textViewMinutes = binding.textViewMinutes;
+        textViewSeconds = binding.textViewSeconds;
+        resumeTimerButton = binding.buttonResumeTimer;
+        pauseTimerButton = binding.buttonPauseTimer;
+        restartTimerButton = binding.buttonRestartTimer;
+        cancelTimerButton = binding.buttonCancelTimer;
+        goHomeButton = binding.buttonGoHome;
+        timerDisplayLayout = binding.linearLayoutTimerDisplay;
 
         // create intent to get values passed from Home Activity
         Intent startTimeIntent = getIntent();
