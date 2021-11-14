@@ -11,14 +11,15 @@
         android:roundIcon="@mipmap/launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PomodoroTimer">
-        <activity android:name=".ShareActivity" android:parentActivityName=".HomeActivity"></activity>
+        <activity android:name=".ShareActivity" android:parentActivityName=".HomeActivity"/>
         <activity android:name=".AboutActivity" android:parentActivityName=".HomeActivity" />
         <activity android:name=".NotificationsActivity" android:parentActivityName=".HomeActivity" />
         <activity android:name=".timer.TimerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
             />
         <activity android:name=".BaseActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
