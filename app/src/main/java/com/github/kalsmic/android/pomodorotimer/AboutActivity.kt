@@ -1,62 +1,53 @@
-package com.github.kalsmic.android.pomodorotimer;
+package com.github.kalsmic.android.pomodorotimer
 
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.os.Bundle
+import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityAboutBinding
+import java.util.Objects
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.github.kalsmic.android.pomodorotimer.databinding.ActivityAboutBinding;
-
-import java.util.Objects;
-
-public class AboutActivity extends AppCompatActivity {
-    WebView webView;
-    Spinner spinner;
-    int aboutChoiceId;
+class AboutActivity : AppCompatActivity() {
+    private lateinit var webView: WebView
+    private lateinit var spinner: Spinner
+    var aboutChoiceId: Int = 0
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityAboutBinding binding = ActivityAboutBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // set back button
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("About");
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "About"
 
         // retrieve references to the Views defined in the activity_about.xml
-        webView = binding.webViewAbout;
+        binding.webViewAbout.also { this.webView = it }
 
-        spinner = binding.spinnerAboutUri;
+        spinner = binding.spinnerAboutUri
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.abouts_array, android.R.layout.simple_spinner_item);
+        val adapter = ArrayAdapter.createFromResource(this,
+                R.array.abouts_array, android.R.layout.simple_spinner_item)
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        spinner.adapter = adapter
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                aboutChoiceId = position;
-
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+                aboutChoiceId = position
             }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {
             }
-        });
-
+        }
     }
 
     /**
@@ -64,10 +55,10 @@ public class AboutActivity extends AppCompatActivity {
      *
      * @param view the Go button
      */
-    public void navigate(View view) {
-        webView.setVisibility(View.VISIBLE);
-        webView.setWebViewClient(new WebViewClient());
-        String[] aboutURIOptions = getResources().getStringArray(R.array.abouts_uri_array);
-        webView.loadUrl(aboutURIOptions[aboutChoiceId]);
+    fun navigate(view: View?) {
+        this.webView.visibility = View.VISIBLE
+        this.webView.webViewClient = WebViewClient()
+        val aboutURIOptions = resources.getStringArray(R.array.abouts_uri_array)
+        this.webView.loadUrl(aboutURIOptions[aboutChoiceId])
     }
 }

@@ -1,63 +1,56 @@
-package com.github.kalsmic.android.pomodorotimer;
+package com.github.kalsmic.android.pomodorotimer
 
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityNotificationsBinding
+import java.util.Objects
 
-import androidx.appcompat.app.AppCompatActivity;
+class NotificationsActivity : AppCompatActivity() {
+    private var currentNotificationId: Int = 0
 
-import com.github.kalsmic.android.pomodorotimer.databinding.ActivityNotificationsBinding;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-import java.util.Objects;
-
-public class NotificationsActivity extends AppCompatActivity {
-
-    int currentNotificationId = 0;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        ActivityNotificationsBinding binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        val binding = ActivityNotificationsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         // set back button
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Notifications");
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        supportActionBar?.title = "Notifications"
 
         // create a sound object
-        Sound sound = new Sound(getApplicationContext());
+        val sound = Sound(applicationContext)
 
         // get default notification sound Id
-        currentNotificationId = sound.getDefaultSoundId();
+        currentNotificationId = sound.defaultSoundId
 
-        ListView listViewSounds = binding.listViewSounds;
+        val listViewSounds = binding.listViewSounds
 
         // populate list view with sounds
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.soundsArray, android.R.layout.simple_list_item_single_choice);
-        listViewSounds.setAdapter(adapter);
+        val adapter = ArrayAdapter.createFromResource(
+                this, R.array.soundsArray, android.R.layout.simple_list_item_single_choice)
+        listViewSounds.adapter = adapter
 
         // select default notification sound  in the list view
-        listViewSounds.setItemChecked(currentNotificationId, true);
+        listViewSounds.setItemChecked(currentNotificationId, true)
 
         // attach action to click event
-        listViewSounds.setOnItemClickListener((parent, view, position, id) -> {
-            sound.play(position);
-            currentNotificationId = position;
-        });
+        listViewSounds.onItemClickListener = OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+            sound.play(position)
+            currentNotificationId = position
+        }
 
-        Button saveSoundButton = binding.buttonSaveSound;
+        val saveSoundButton = binding.buttonSaveSound
 
-        saveSoundButton.setOnClickListener(v -> {
-            sound.setDefaultSound(currentNotificationId);
+        saveSoundButton.setOnClickListener { v: View? ->
+            sound.defaultSound = currentNotificationId
             // Show notification to the user
-            Toast.makeText(getApplicationContext(), "Sound Changed !", Toast.LENGTH_SHORT).show();
-        });
-
-
+            Toast.makeText(applicationContext, "Sound Changed !", Toast.LENGTH_SHORT).show()
+        }
     }
-
 }

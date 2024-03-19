@@ -1,57 +1,58 @@
-package com.github.kalsmic.android.pomodorotimer;
+package com.github.kalsmic.android.pomodorotimer
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityHomeBinding
+import com.github.kalsmic.android.pomodorotimer.timer.TimerActivity
+import kotlin.properties.Delegates
 
-import com.github.kalsmic.android.pomodorotimer.databinding.ActivityHomeBinding;
-import com.github.kalsmic.android.pomodorotimer.timer.TimerActivity;
+class HomeActivity : BaseActivity() {
+    private lateinit var timerDuration: TextView
+    var minDuration: Int = 5
+    private var  maxDuration: Int = 60
+    private var stepDuration: Int = 5
+    private var currentDuration by Delegates.notNull<Int>()
+    private lateinit var reduceTimerButton: Button
+    private lateinit var increaseTimerButton: Button
+    private lateinit var startTimerButton: Button
+    private var completed by Delegates.notNull<Boolean>()
 
-public class HomeActivity extends BaseActivity {
-    TextView timerDuration;
-    Integer minDuration = 5, maxDuration = 60, stepDuration = 5, currentDuration;
-    Button reduceTimerButton, increaseTimerButton, startTimerButton;
-    Boolean completed;
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        timerDuration = binding.textViewTimerDuration;
+        timerDuration = binding.textViewTimerDuration
 
         // set initial timer value
-        currentDuration = minDuration;
-        setTimerDuration();
+        currentDuration = minDuration
+        setTimerDuration()
 
-        reduceTimerButton = binding.buttonReduceDuration;
-        increaseTimerButton = binding.buttonIncreaseDuration;
-        startTimerButton = binding.buttonStartTimer;
-
-
+        reduceTimerButton = binding.buttonReduceDuration
+        increaseTimerButton = binding.buttonIncreaseDuration
+        startTimerButton = binding.buttonStartTimer
     }
 
-    private void setTimerDuration() {
-        timerDuration.setText(String.valueOf(currentDuration));
+    private fun setTimerDuration() {
+        timerDuration.text = currentDuration.toString()
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    override fun onResume() {
+        super.onResume()
         // check for timer status in intent
-        Intent timerStatusIntent = getIntent();
-        completed = timerStatusIntent.getBooleanExtra("timerCompleted", false);
+        val timerStatusIntent = intent
+        completed = timerStatusIntent.getBooleanExtra("timerCompleted", false)
 
         // show notification to the user if timer is completed
         if (completed) {
-            Toast.makeText(this, "Timer Completed", Toast.LENGTH_LONG).show();
-            Sound sound = new Sound(getApplicationContext());
-            sound.playDefaultSound();
+            Toast.makeText(this, "Timer Completed", Toast.LENGTH_LONG).show()
+            val sound = Sound(applicationContext)
+            sound.playDefaultSound()
         }
     }
 
@@ -60,14 +61,13 @@ public class HomeActivity extends BaseActivity {
      *
      * @param view the increase or decrease timer button
      */
-    public void changeTimerDuration(View view) {
-
-        if (view.equals(increaseTimerButton) && !((currentDuration + stepDuration) > maxDuration)) {
-            currentDuration += stepDuration;
-            toggleShowDurationButtons(currentDuration);
-        } else if (view.equals(reduceTimerButton) && !((currentDuration - stepDuration) < minDuration)) {
-            currentDuration -= stepDuration;
-            toggleShowDurationButtons(currentDuration);
+    fun changeTimerDuration(view: View) {
+        if (view == increaseTimerButton && currentDuration + stepDuration <= maxDuration) {
+            currentDuration += stepDuration
+            toggleShowDurationButtons(currentDuration)
+        } else if (view == reduceTimerButton && currentDuration - stepDuration >= minDuration) {
+            currentDuration -= stepDuration
+            toggleShowDurationButtons(currentDuration)
         }
     }
 
@@ -78,22 +78,20 @@ public class HomeActivity extends BaseActivity {
      *
      * @param duration the length of the timer in minutes
      */
-    private void toggleShowDurationButtons(int duration) {
-
+    private fun toggleShowDurationButtons(duration: Int) {
         if (duration <= minDuration) {
-            reduceTimerButton.setVisibility(View.INVISIBLE);
+            reduceTimerButton.visibility = View.INVISIBLE
         } else {
-            reduceTimerButton.setVisibility(View.VISIBLE);
+            reduceTimerButton.visibility = View.VISIBLE
         }
 
         if (duration >= maxDuration) {
-            increaseTimerButton.setVisibility(View.INVISIBLE);
+            increaseTimerButton.visibility = View.INVISIBLE
         } else {
-            increaseTimerButton.setVisibility(View.VISIBLE);
+            increaseTimerButton.visibility = View.VISIBLE
         }
         // SHOW CURRENT DURATION TO USER
-        setTimerDuration();
-
+        setTimerDuration()
     }
 
 
@@ -102,11 +100,11 @@ public class HomeActivity extends BaseActivity {
      *
      * @param view start timer view
      */
-    public void goToStartTimer(View view) {
-        Intent startTimerIntent = new Intent();
-        startTimerIntent.setClass(this, TimerActivity.class);
+    fun goToStartTimer(view: View?) {
+        val startTimerIntent = Intent()
+        startTimerIntent.setClass(this, TimerActivity::class.java)
 
-        startTimerIntent.putExtra("timerDuration", currentDuration.longValue());
-        startActivity(startTimerIntent);
+        startTimerIntent.putExtra("timerDuration", currentDuration.toLong())
+        startActivity(startTimerIntent)
     }
 }

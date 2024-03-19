@@ -1,49 +1,40 @@
-package com.github.kalsmic.android.pomodorotimer;
+package com.github.kalsmic.android.pomodorotimer
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.github.kalsmic.android.pomodorotimer.databinding.ActivityShareBinding
+import java.util.Objects
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.github.kalsmic.android.pomodorotimer.databinding.ActivityShareBinding;
-
-import java.util.Objects;
-
-public class ShareActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityShareBinding binding = ActivityShareBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+class ShareActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ActivityShareBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // set back button
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Share");
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Share"
 
-        Button sendMessageButton = binding.buttonSend;
+        val sendMessageButton = binding.buttonSend
 
         // retrieve the message used in the edit text
-        String message = (binding.editTextTextMultiLineMessage).getText().toString();
+        val message = binding.editTextTextMultiLineMessage.text.toString()
 
-        sendMessageButton.setOnClickListener(v -> {
+        sendMessageButton.setOnClickListener { v: View? ->
             // create destination with empty number so that the user can specify their own
-            Uri destination = Uri.parse("smsto:");
+            val destination = Uri.parse("smsto:")
 
             // create implicit intent ot any app with SENDTO capability
-            Intent smsIntent = new Intent(Intent.ACTION_SENDTO, destination);
+            val smsIntent = Intent(Intent.ACTION_SENDTO, destination)
 
             // pass the composed message to the messaging activity
-            smsIntent.putExtra("sms_body", message);
+            smsIntent.putExtra("sms_body", message)
 
             // launch the intent
-            startActivity(smsIntent);
-
-        });
-
+            startActivity(smsIntent)
+        }
     }
-
 }
