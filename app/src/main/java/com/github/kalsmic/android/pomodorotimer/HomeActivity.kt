@@ -12,7 +12,7 @@ import kotlin.properties.Delegates
 
 class HomeActivity : BaseActivity() {
     private lateinit var timerDuration: TextView
-    var minDuration: Int = 5
+    var minDuration: Int = 1
     private var  maxDuration: Int = 60
     private var stepDuration: Int = 5
     private var currentDuration by Delegates.notNull<Int>()
