@@ -5,7 +5,7 @@ import android.media.MediaPlayer
 import androidx.core.content.edit
 
 
-private const val NOTIFICATION_PREFERENCES_NAME = "sound_prefences"
+private const val NOTIFICATION_PREFERENCES_NAME = "sound_preferences"
 
 class Sound(private val context: Context) {
 
