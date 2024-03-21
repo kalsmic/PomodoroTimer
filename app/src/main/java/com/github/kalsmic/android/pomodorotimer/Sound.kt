@@ -2,7 +2,6 @@ package com.github.kalsmic.android.pomodorotimer
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnCompletionListener
 import androidx.core.content.edit
 
 
@@ -51,7 +50,7 @@ class Sound(private val context: Context) {
      */
     private fun getMediaPlayer(soundId: Int): MediaPlayer? {
         mediaPlayer = MediaPlayer.create(context, getSound(soundId))
-        mediaPlayer?.setOnCompletionListener(OnCompletionListener { mediaPlayer!!.release() })
+        mediaPlayer?.setOnCompletionListener { mediaPlayer?.release() }
         return mediaPlayer
     }
 
